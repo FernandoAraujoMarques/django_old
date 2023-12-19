@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>Excluir Registros</h3>
+
+  <form method="post" action="">
+
+      <p>
+          Deseja Excluir o Registro: {{ object }}
+      </p>
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Excluir</button>
+  </form>
+{% endblock %}
+
+
+</body>
+</html>

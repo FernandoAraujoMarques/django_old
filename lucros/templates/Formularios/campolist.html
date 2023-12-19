@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="green-text" id="lucro">Lucro: {{ total_valor|default:"0.00" }}</h1>
+<h1 class="red-text" id="Pendente">Apostas Pendentes: {{ total_valor_pendente|default:"0.00" }}</h1>
+
+<button onclick="ocultarLinhasPendentes()">Ocultar Ganhou</button>
+<button onclick="mostrarLinhasPendentes()">Mostrar Ganhou</button>
+
+<div class=".betting-table" id="myTable">
+        <table class="table">
+          <tr>
+              <th> Data </th>
+              <th> Hora </th>
+              <th> Casa </th>
+              <th> Vr_Investido </th>
+              <th> Status </th>
+              <th> ODD </th>
+              <th> Lucro </th>
+              <th> Opcoes </th>
+          </tr>
+
+            {% for member in object_list %}
+            <tr>
+                <td>{{ member.data }}</td>
+                <td>{{ member.hora }}</td>
+                <td>{{ member.casa }}</td>
+                <td>{{ member.valor }}</td>
+                <td class="status">{{ member.status }}</td>
+                <td>{{ member.odd }}</td>
+                <td>{{ member.ganho }}</td>
+                <td>
+                    <a href="{% url 'editar-status' member.pk %}" class="fa fa-pencil fa-lg" style="color: blue;"></a>
+                    <a href="{% url 'deleta-campo' member.pk %}" class="fa fa-trash fa-lg" style="color: red;"></a>
+                </td>
+            </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="3"> Nada </td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+</div>
+
+{% endblock %}
+
+
+</body>
+</html>
