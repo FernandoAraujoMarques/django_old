@@ -1,7 +1,7 @@
 # meuapp/signals.py
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from lucros.models import Member, Saldo  # Certifique-se de ajustar isso para o caminho correto do seu modelo
+from lucros.models import Member, Saldo
 
 @receiver(post_save, sender=Member)
 def novo_member_criado(sender, instance, created, **kwargs):

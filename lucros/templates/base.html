@@ -74,6 +74,8 @@ body {
   <a href="http://127.0.0.1:8000/cadastrar/campo">Fazer_Aposta</a>
   <a href="http://127.0.0.1:8000/saldo/">Saldo_Casas</a>
   <a href="http://127.0.0.1:8000/lucros_day">Lucro_Day</a>
+  <a href="http://127.0.0.1:8000/Saque_Deposito">Saque_Deposito</a>
+  <a href="http://127.0.0.1:8000/admin/lucros/saldo/">BD</a>
   <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
 
@@ -105,104 +107,24 @@ function myFunction() {
 </script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-
-        // Obter o elemento h1
-        var lucroElement = document.querySelector(".green-text");
-
-        // Verificar se o elemento existe antes de acessar suas propriedades
-        if (lucroElement) {
-            // Obter o texto do elemento h1
-            var lucroText = lucroElement.textContent;
-
-            // Remover os zeros desnecessários usando parseFloat e toString
-            var lucroSemZeros = parseFloat(lucroText.replace(/[^0-9.]/g, '')).toString();
-
-            // Verificar se a conversão resultou em um número válido
-            if (!isNaN(lucroSemZeros)) {
-                // Atualizar o texto do elemento h1
-                lucroElement.textContent = "Lucro: " + lucroSemZeros;
+    document.addEventListener('DOMContentLoaded', function () {
+        // Loop através de cada célula da tabela
+        var cells = document.querySelectorAll('#myTable td');
+        cells.forEach(function (cell) {
+            // Verifica se o conteúdo da célula é um número
+            var numberValue = parseFloat(cell.textContent);
+            if (!isNaN(numberValue)) {
+                // Se for um número, atualize o conteúdo com o número formatado
+                cell.textContent = numberValue.toFixed(2);
             }
-        }
-    });
-</script>
-
-<script>
-            // Obtém todas as linhas da tabela
-            var rows = document.getElementById("myTable").getElementsByTagName("tr");
-
-            // Itera sobre as linhas e verifica se a célula contém a palavra "pendente"
-            for (var i = 0; i < rows.length; i++) {
-                var cells = rows[i].getElementsByTagName("td");
-                var hasPendente = false;
-
-                // Itera sobre as células
-                for (var j = 0; j < cells.length; j++) {
-                    // Verifica se a célula contém a palavra "pendente"
-                    if (cells[j].textContent.includes("pendente")) {
-                        hasPendente = true;
-                        // Aplica a cor diretamente à célula
-                        cells[j].style.color = "red";
-                    }
-                }
-
-                // Adiciona a classe red-text à linha se "pendente" for encontrado
-                if (hasPendente) {
-                    rows[i].classList.add("red-text");
-                }
-            }
-</script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-
-        // Obter o elemento h1
-        var PendenteElement = document.querySelector(".red-text");
-
-        // Verificar se o elemento existe antes de acessar suas propriedades
-        if (PendenteElement) {
-            // Obter o texto do elemento h1
-            var PendenteText = PendenteElement.textContent;
-
-            // Remover os zeros desnecessários usando parseFloat e toString
-            var PendenteSemZeros = parseFloat(PendenteText.replace(/[^0-9.]/g, '')).toString();
-
-            // Verificar se a conversão resultou em um número válido
-            if (!isNaN(PendenteSemZeros)) {
-                // Atualizar o texto do elemento h1
-                PendenteElement.textContent = "Pendente: " + PendenteSemZeros;
-            }
-        }
-    });
-</script>
-
-<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Obter a lista de itens
-            var listaItens = document.querySelectorAll('ul li');
-
-            // Iterar sobre cada item da lista
-            listaItens.forEach(function(item) {
-                // Obter o texto do item
-                var textoItem = item.textContent;
-
-                // Extrair a parte de data e a parte numérica do texto usando expressões regulares
-                var partes = textoItem.match(/([A-Za-z]+\.\s\d+,\s\d+): ([\d\.]+)/);
-
-                // Se houver partes, substituir o texto do item
-                if (partes && partes.length === 3) {
-                    var data = partes[1];
-                    var parteNumerica = partes[2];
-                    item.textContent = data + ': ' + parteNumerica;
-                }
-            });
         });
-    </script>
+    });
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Loop através de cada célula da tabela
-        var cells = document.querySelectorAll('#myTable td');
+        var cells = document.querySelectorAll('#myTable1 td');
         cells.forEach(function (cell) {
             // Verifica se o conteúdo da célula é um número
             var numberValue = parseFloat(cell.textContent);
