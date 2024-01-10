@@ -1,0 +1,147 @@
+body {
+margin:0;
+text-align: center; /* Centraliza o conteúdo na página */
+}
+
+.icon-bar {
+  width: 100%;
+  background-color: green;
+  overflow: auto;
+}
+
+.icon-bar a {
+  float: left;
+  width: 20%;
+  text-align: center;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 36px;
+}
+
+.icon-bar a:hover {
+  background-color: #000;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+
+table {
+      margin: auto; /* Centraliza a tabela */
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 80%;
+      border: 2px solid #ddd;
+    }
+
+th, td {
+  text-align: center;
+  padding: 18px;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    p {
+      padding: 10px;
+      font-weight: bold;
+      font-size: 24px;
+  }
+
+    /* Estilo para célula verde quando Option 1 está selecionado */
+    td.selected-option1 {
+      background-color: green;
+      color: white; /* Cor do texto para melhor contraste */
+    }
+
+/* Adiciona estilo para linhas com status "pendente" */
+.red-row {
+    background-color: red;
+    color: red; /* Cor do texto para melhor contraste */
+
+body {margin:0;}
+
+.icon-bar {
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
+}
+
+.icon-bar a {
+  float: left;
+  width: 20%;
+  text-align: center;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 36px;
+}
+
+.icon-bar a:hover {
+  background-color: #000;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+
+.red-icon {
+        color: red;
+    }
+
+.blue-icon {
+        color: blue;
+    }
+
+.icon-link {
+        text-decoration: none;
+    }
+
+.hidden {
+            display: none;
+        }
+
+h1 {
+    display: inline-block;
+    margin-right: 20px; /* Ajuste conforme necessário para o espaçamento desejado */
+    }
+
+body {
+      text-align: center; /* Centraliza o conteúdo na página */
+      }
+
+.betting-table {
+    margin: auto; /* Centraliza a tabela */
+}
+
+.hidden {
+        display: none;
+        }
+
+.pendente {
+        color: red;
+        }
+
+.red-text {
+        color: red;
+
+/* Adicione este bloco de estilo para ajustar o tamanho da tabela */
+ #myTable {
+   max-width: 400px; /* Defina a largura máxima da tabela conforme necessário */
+   margin: 0 auto; /* Centralize a tabela na página */
+ }
+
+ table {
+   width: 50%; /* A tabela ocupa 100% da largura do contêiner pai */
+   border-collapse: collapse; /* Mesclar as bordas das células */
+   margin-bottom: 15px; /* Adicione espaço entre a tabela e outros elementos */
+ }
+
+        th, td {
+            padding: 8px; /* Adicione algum espaço interno às células */
+            text-align: left; /* Alinhe o texto à esquerda nas células */
+        }

@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<style>
+        #myTable1 {
+            max-width: 70%;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class=".betting-table" id="myTable1">
+    <table class="table1">
+      <tr>
+        <th>Lucro_Total</th>
+        <th>Apostas_Pendente</th>
+        <th>Lucro_Pendente</th>
+          <th>Lucro_%</th>
+        <th>Ocultar_Ganhou</th>
+        <th>Mostrar_Tudo</th>
+      </tr>
+      <tr>
+        <td>{{ total_valor|default:"0.00" }}</td>
+        <td>{{ total_valor_pendente|default:"0.00" }}</td>
+        <td>{{ l_pendente }}</td>
+        <td>{{ P_lucro }}</td>
+        <td><button onclick="ocultarLinhasPendentes()">Ocultar</button></td>
+        <td><button onclick="mostrarLinhasPendentes()">Mostrar</button></td>
+      </tr>
+    </table>
+</div>
+
+<br></br>
+
+<div>
+    <label for="dateFilter">Filter by Date:</label>
+    <select id="dateFilter" onchange="filterTableByDate()">
+        <option value="all">All Dates</option>
+        <!-- Add more options as needed -->
+    </select>
+</div>
+
+<div class=".betting-table" id="myTable">
+        <table class="table">
+          <tr>
+              <th> Data </th>
+              <th> Hora </th>
+              <th> Casa </th>
+              <th> Vr_Investido </th>
+              <th> Status </th>
+              <th> ODD </th>
+              <th> Lucro </th>
+              <th> Opcoes </th>
+          </tr>
+
+            {% for member in object_list %}
+            <tr>
+                <td>{{ member.data }}</td>
+                <td>{{ member.hora }}</td>
+                <td>{{ member.casa }}</td>
+                <td>{{ member.valor }}</td>
+                <td class="status">{{ member.status }}</td>
+                <td>{{ member.odd }}</td>
+                <td>{{ member.ganho }}</td>
+                <td>
+                    <a href="{% url 'editar-status' member.pk %}" class="fa fa-pencil fa-lg" style="color: blue;"></a>
+                    <a href="{% url 'deleta-campo' member.pk %}" class="fa fa-trash fa-lg" style="color: red;"></a>
+                </td>
+            </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="3"> Nada </td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+</div>
+
+{% endblock %}
+
+<script>
+function filterTableByDate() {
+    var selectedDate = document.getElementById("dateFilter").value;
+    var tableRows = document.getElementById("myTable").getElementsByTagName("tr");
+
+    for (var i = 1; i < tableRows.length; i++) {
+        var row = tableRows[i];
+        var dateCell = row.cells[0].innerText; // Assuming the date is in the first column
+
+        if (selectedDate === "all" || dateCell.includes(selectedDate)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    }
+}
+
+// You can also call the filterTableByDate function on page load to show all rows initially
+window.onload = function() {
+    populateDateFilterOptions();
+    filterTableByDate();
+};
+
+function populateDateFilterOptions() {
+    var dateFilterDropdown = document.getElementById("dateFilter");
+    var uniqueDates = new Set();
+
+    // Start from the second row (i=1) since the first row is the header
+    var tableRows = document.getElementById("myTable").getElementsByTagName("tr");
+    for (var i = 1; i < tableRows.length; i++) {
+        var dateCell = tableRows[i].cells[0].innerText; // Assuming the date is in the first column
+        uniqueDates.add(dateCell.trim());
+    }
+
+    uniqueDates.forEach(function (date) {
+        var option = document.createElement("option");
+        option.value = date;
+        option.textContent = date;
+        dateFilterDropdown.appendChild(option);
+    });
+}
+</script>
+
+</body>
+</html>
