@@ -25,12 +25,13 @@ def member_atualizado(sender, instance, **kwargs):
     if instance.status == 'ganhou':
         casa_ganhadora = instance.casa
         valor_ganho = instance.valor
+        valor_odd = instance.odd
 
         # Certifique-se de lidar com situações em que o Saldo para a casa ganhadora ainda não existe
         saldo_casa_ganhadora, created = Saldo.objects.get_or_create(casa=casa_ganhadora)
 
         # Atualizar o saldo adicionando o valor ganho
-        saldo_casa_ganhadora.valor += valor_ganho
+        saldo_casa_ganhadora.valor += valor_ganho * valor_odd
         saldo_casa_ganhadora.save()
 
         print(f"Aposta ganha: {instance}. Saldo atualizado para a casa {casa_ganhadora}: {saldo_casa_ganhadora.valor}")
